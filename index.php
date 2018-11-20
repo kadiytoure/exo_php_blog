@@ -18,7 +18,21 @@
     <input type="text" id="idcontent" name="content" placeholder="enter your message"/><br/>
     <input type="submit" value="send" /><br/>
     </form>
+    <?php
+    try {
+        $bdd = new PDO('mysql:host=localhost; dbname=blog', 'kadiy', 'kadiy');
+    }
+    catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+
+    $reponse = $bdd->query('SELECT author, comment, date_comment FROM comments ORDER BY ID DESC LIMIT 0,5');
+
+    $donnees = $reponse->fetch();
+    while ($donnees = $reponse->fetch()) {
+     echo '<p>'. htmlspecialchars($donnees['date_comment']) . '' . htmlspecialchars($donnees['author']) . '' . ':' .  htmlspecialchars($donnees['comment']) . '</p>';
+    }
+    $reponse->closeCursor();
+?>
 </body>
 </html>
-<?php
-?>
