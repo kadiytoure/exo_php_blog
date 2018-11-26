@@ -26,11 +26,11 @@
         die('Erreur : ' . $e->getMessage());
     }
 
-    $reponse = $bdd->query('SELECT author, comment, date_comment FROM comments ORDER BY ID DESC LIMIT 0,5');
+    $reponse = $bdd->query('SELECT title, author, content, date_creation  FROM billets ORDER BY ID DESC LIMIT 0,5');
 
     $donnees = $reponse->fetch();
     while ($donnees = $reponse->fetch()) {
-     echo '<p>'. htmlspecialchars($donnees['date_comment']) . '' . htmlspecialchars($donnees['author']) . '' . ':' .  htmlspecialchars($donnees['comment']) . '</p>';
+     echo '<p>'. htmlspecialchars($donnees['date_creation']) . '' . htmlspecialchars($donnees['author']) . '' . ':' .  htmlspecialchars($donnees['comment']) . '</p>';
     }
     $reponse->closeCursor();
 ?>
