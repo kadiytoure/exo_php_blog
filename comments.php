@@ -22,7 +22,7 @@
 
     $req = $bdd->prepare('INSERT INTO billets(`id`, `title`, `author`, `content`, `date_creation`) VALUES(:id, :title, :author, :content, :date_creation)');
 
-    $req = $bdd->prepare('INSERT INTO comments(`id`, `title`, `author`, `content`, `date_creation`) VALUES(:id, :title, :author, :content, :date_creation)');
+    $req = $bdd->prepare('INSERT INTO comments(`id`,`id_billet`, `author`, `comment`, `date_comment`) VALUES(:id, :id_billet, :author, :comment, :date_comment)');
 
     $req->execute(array(
         'id' => $id,
@@ -30,6 +30,14 @@
         'author' => $author,
         'content' => $content,
         'date_creation' => $date_creation
+    ));
+
+    $req->execute(array(
+        'id' => $id,
+        'id_billet' => $id_billet,
+        'author' => $author,
+        'comment'=> $comment,
+        'date_comment' => $date_comment
     ));
 
     header('Location: index.php');

@@ -30,7 +30,7 @@
 
     $donnees = $reponse->fetch();
     while ($donnees = $reponse->fetch()) {
-     echo '<p>'. htmlspecialchars($donnees['date_creation']) . '' . htmlspecialchars($donnees['author']) . '' . ':' .  htmlspecialchars($donnees['comment']) . '</p>';
+     echo '<p>'. htmlspecialchars($donnees['date_creation']) . '' . htmlspecialchars($donnees['author']) . '' . ':' .  htmlspecialchars($donnees['content']) . '</p>';
     }
     $reponse->closeCursor();
 ?>
